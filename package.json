@@ -20,7 +20,7 @@
     "anchor-js": "^5.0.0",
     "bootstrap": "^5.2.0",
     "highlight.js": "^11.7.0",
-    "jsx-dom": "^8.0.2"
+    "jsx-dom": "^8.0.5"
   },
   "description": "JM2K69 Docfxv3 Theme",
   "author": "JM2K69"
