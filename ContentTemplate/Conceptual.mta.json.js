@@ -2,6 +2,7 @@
 
 var chromeCommon = require('./chrome.common.js')
 
+
 exports.transform = function (model) {
     model.toc_rel = model._tocRel;
     model.layout = model.layout || "Conceptual";
@@ -19,3 +20,4 @@ exports.transform = function (model) {
         content: JSON.stringify(model)
     }
 }
+

@@ -12,7 +12,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "jsx": "react"
+    "jsx": "react",
+    "allowJs": true
   },
   "include": ["./src"]
 }

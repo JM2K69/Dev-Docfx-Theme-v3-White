@@ -1,98 +1,3 @@
-"use strict";
-/*
-----------------------------------------
-highlightJs Badge
-----------------------------------------
-
-A copy code and language display badge
-for the highlightJs Syntax highlighter.
-
-by Rick Strahl, 2019-2020
-License: MIT
-
-Make sure this script is loaded last in your
-script loading.
-
-Usage:
-------
-Load `highlightjs-badge.js` after `highlight.js`:
-
-```js
-<link href="highlightjs/styles/vs2015.css" rel="stylesheet">
-<script src="highlighjs/highlight.pack.js"></script>
-
-<script src="highlightjs-badge.js"></script>  
-<script>
-    setTimeout(function () {
-        var pres = document.querySelectorAll("pre>code");
-        for (var i = 0; i < pres.length; i++) {
-            hljs.highlightBlock(pres[i]);
-        }
-        var options = {
-            contentSelector: "#ArticleBody",
-            // Delay in ms used for `setTimeout` before badging is applied
-            // Use if you need to time highlighting and badge application
-            // since the badges need to be applied afterwards.
-            // 0 - direct execution (ie. you handle timing
-            loadDelay:0,
-
-            // CSS class(es) used to render the copy icon.
-            copyIconClass: "fa fa-copy",
-            // CSS class(es) used to render the done icon.
-            checkIconClass: "fa fa-check text-success"
-        };
-        window.highlightJsBadge(options);
-    },10);
-</script>
-```
-
-The script contains the template and CSS so nothing
-else is needed to run it.
-
-Customization:
---------------
-This code automatically embeds styling and the template.
-
-If you want to customize you can either create a template
-in your HTML **using the code at the end of this file**.
-
-Alternately you can customize the `getTemplate()` function
-that renders the code from a string and keep it self contained
-within this script.
-
-Requirements:
--------------
-Uses some ES6 features so won't work in IE without shims:
-
-* Object.assign
-* String.trim
-
-*/
-
-// module header
-(function( global, factory ) {
-
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
-		// For CommonJS and CommonJS-like environments where a proper `window`
-		// is present, execute the factory		
-		module.exports = global.document ?
-			factory( global, true ) :
-			function( w ) {
-				if ( !w.document ) {
-					throw new Error( "A window with a document is required" );
-				}
-				return factory( w );
-			};
-	} else {
-		factory( global );
-	}
-
-// Pass this if window is not defined yet
-}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
-
-if (typeof highlightJsBadgeAutoLoad !== 'boolean')
-    var highlightJsBadgeAutoLoad = false;
-
 function highlightJsBadge(opt) {
     var options = {
         // the selector for the badge template
@@ -310,7 +215,7 @@ function highlightJsBadge(opt) {
             "        flex-direction: row;",
             "        white-space: normal;",
             "        background: transparent;",
-            "        background: #333;",
+            "        background: rgb(191 191 191 / 28%)",
             "        color: white;",
             "        font-size: 0.875em;",
             "        opacity: 0.5;",
@@ -337,7 +242,7 @@ function highlightJsBadge(opt) {
             "    .code-badge-language {",
             "        margin-right: 10px;",
             "        font-weight: 600;",
-            "        color: goldenrod;",
+            "        color: rgb(10,25,20);",
             "    }",
             "    .code-badge-copy-icon {",
             "        font-size: 1.2em;",
@@ -367,77 +272,4 @@ function highlightJsBadge(opt) {
     initialize(opt);
 }
 
-
-// global reference Window
-window.highlightJsBadge = highlightJsBadge;
-
-
-// module export
-if (window.module && window.module.exports)
-   window.module.exports.highlightJsBadge = highlightJsBadge;
-
-if (highlightJsBadgeAutoLoad)
-    highlightJsBadge();
-    
-}));
-
-
-// You can embed the following into your HTML document
-// to provide your own custom styling.
-
-/*
-<style>
-    "@media print {
-        .code-badge { display: none; }
-    }
-    .code-badge-pre {
-        position: relative; 
-    }
-    .code-badge {
-        display: flex;
-        flex-direction: row;
-        white-space: normal;
-        background: transparent;
-        background: #333;
-        color: white;
-        font-size: 0.875em;
-        opacity: 0.5;
-        border-radius: 0 0 0 7px;
-        padding: 5px 8px 5px 8px;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .code-badge.active {
-        opacity: 0.8;
-    }
-    .code-badge:hover {
-        opacity: .95;
-    }
-    .code-badge a,
-    .code-badge a:hover {
-        text-decoration: none;
-    }
-
-    .code-badge-language {
-        margin-right: 10px;
-        font-weight: 600;
-        color: goldenrod;
-    }
-    .code-badge-copy-icon {
-        font-size: 1.2em;
-        cursor: pointer;
-        padding: 0 7px;
-        margin-top:2;
-    }
-    .fa.text-success:{ color: limegreen !important}    
-</style>
-<div id="CodeBadgeTemplate" style="display:none">
-    <div class="code-badge">
-        <div class="code-badge-language">{{language}}</div>
-        <div title="Copy to clipboard">
-            <i class="{{copyIconClass}} code-badge-copy-icon"></i>
-        </div>
-     </div>
-</div>
-*/
+export default highlightJsBadge;

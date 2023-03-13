@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import hljs from 'highlight.js';
+import hljsbadge from './hljsbadge';
 
 export function highlight() {
   document.querySelectorAll('pre code').forEach(block => {
@@ -41,5 +42,7 @@ export function highlight() {
 
     block.innerHTML = lines.join('\n')
   })
+    hljsbadge({});
+
 }
 
